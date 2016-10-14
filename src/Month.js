@@ -22,14 +22,14 @@ export default class Month extends React.Component {
     render() {
         let {
             days, changeSelection, style, monthsLocale,
-            bodyBackColor, bodyTextColor, headerSepColor, width
+            bodyBackColor, bodyTextColor, headerSepColor, width, monthHeaderColor
         } = this.props;
 
         var monthHeader = monthsLocale[days[15].date.getMonth()] + ' ' + days[15].date.getFullYear();
 
         return (
             <View style={[style, {width: width, backgroundColor: bodyBackColor}]}>
-                <Text style={[styles.monthHeader, {color: bodyTextColor}]}>
+                <Text style={[styles.monthHeader, {color: monthHeaderColor || bodyTextColor}]}>
                     {monthHeader}
                 </Text>
                 <View style={styles.monthDays}>
