@@ -22,16 +22,25 @@ export default class Month extends React.Component {
 	render() {
 		let {
 			days, changeSelection, style, monthsLocale,
-			bodyBackColor, bodyTextColor, headerSepColor, width, monthTextColor
+			bodyBackColor, bodyTextColor, headerSepColor, width, monthTextColor, showFullYear, weekTextStyles,
+			monthHeaderTextStyles, monthHeaderStyles, useCircleMarkers
 		} = this.props;
 
-		var monthHeader = monthsLocale[days[15].date.getMonth()] + ' ' + days[15].date.getFullYear();
+	 	let monthHeader;
+
+		if(showFullYear){
+			monthHeader = monthsLocale[days[15].date.getMonth()] + ' ' + days[15].date.getFullYear();
+		}else {
+			monthHeader = monthsLocale[days[15].date.getMonth()].toUpperCase()
+		}
 
 		return (
 			<View style={[style, {width: width, backgroundColor: bodyBackColor}]}>
-				<Text style={[styles.monthHeader, {color: monthTextColor || bodyTextColor}]}>
-					{monthHeader}
-				</Text>
+				<View style={monthHeaderStyles}>
+					<Text style={[styles.monthHeader, {color: monthTextColor || bodyTextColor}, monthHeaderTextStyles]}>
+						{monthHeader}
+					</Text>
+				</View>
 				<View style={styles.monthDays}>
 					{this.weekDaysLocale.map((dayName, i) => {
 						return (
@@ -43,7 +52,7 @@ export default class Month extends React.Component {
 									height: width / 7
 								}]}
 							>
-								<Text style={{color: bodyTextColor}}>{dayName}</Text>
+								<Text style={[{color: bodyTextColor}, weekTextStyles]}>{dayName}</Text>
 							</View>
 						);
 					})}
@@ -67,9 +76,6 @@ export default class Month extends React.Component {
 
 const styles = StyleSheet.create({
 	monthHeader: {
-		marginTop: 15,
-		marginBottom: 5,
-		fontWeight: 'bold',
 		alignSelf: 'center'
 	},
 	monthDays: {
@@ -77,7 +83,6 @@ const styles = StyleSheet.create({
 		flexWrap: 'wrap'
 	},
 	weekDay: {
-		borderBottomWidth: 1,
 		justifyContent: 'center',
 		alignItems: 'center'
 	}

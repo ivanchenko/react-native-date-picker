@@ -67,6 +67,17 @@ export default class Calendar extends React.Component {
 
 		monthTextColor: PropTypes.string,
 
+		monthHeaderTextStyles: PropTypes.oneOfType([
+			PropTypes.object,
+			PropTypes.number
+		]),
+
+		monthHeaderStyles: PropTypes.oneOfType([
+			PropTypes.object,
+			PropTypes.number
+		]),
+
+
 		dayCommonBackColor: PropTypes.string,
 		dayCommonTextColor: PropTypes.string,
 
@@ -80,7 +91,13 @@ export default class Calendar extends React.Component {
 		dayInRangeTextColor: PropTypes.string,
 
 		isFutureDate: PropTypes.bool,
-		rangeSelect: PropTypes.bool
+		rangeSelect: PropTypes.bool,
+		showFullYear: PropTypes.bool,
+		weekTextStyles: PropTypes.oneOfType([
+			PropTypes.object,
+			PropTypes.number
+		]),
+		useCircleMarkers: PropTypes.bool
 	};
 
 	constructor(props) {
